@@ -1,5 +1,5 @@
-%(a)
-%Initialization of randn function
+% (a)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [1 0; 0 1];
@@ -12,8 +12,8 @@ figure(1), axis([-7 7 -7 7])
 
 %###########################################
 
-%(b)
-%Initialization of randn function
+% (b)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [0.2 0; 0 0.2];
@@ -26,8 +26,8 @@ figure(2), axis([-7 7 -7 7])
 
 %###########################################
 
-%(c)
-%Initialization of randn function
+% (c)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [2 0; 0 2];
@@ -40,8 +40,8 @@ figure(3), axis([-7 7 -7 7])
 
 %##########################################
 
-%(d)
-%Initialization of randn function
+% (d)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [0.2 0; 0 2];
@@ -54,8 +54,8 @@ figure(4), axis([-7 7 -7 7])
 
 %###########################################
 
-%(e)
-%Initialization of randn function
+% (e)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [2 0; 0 0.2];
@@ -68,8 +68,8 @@ figure(5), axis([-7 7 -7 7])
 
 %###########################################
 
-%(st)
-%Initialization of randn function
+% (st)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [1 0.5; 0.5 1];
@@ -82,8 +82,8 @@ figure(6), axis([-7 7 -7 7])
 
 %###########################################
 
-%(z)
-%Initialization of randn function
+% (z)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [0.3 0.5; 0.5 2];
@@ -96,8 +96,8 @@ figure(7), axis([-7 7 -7 7])
 
 %###########################################
 
-%(h)
-%Initialization of randn function
+% (h)
+% Initialization of randn function
 randn('seed',0);
 m = [0,0];
 S = [0.3 -0.5; -0.5 2];
