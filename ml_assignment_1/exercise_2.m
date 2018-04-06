@@ -35,7 +35,7 @@ for i=1 :N
 end
 
 % Check for the points that are not classified correctly.
-%if bayes_res(i)=0 then the i-th point is correctly classified
+% if bayes_res(i)=0 then the i-th point is correctly classified
 bayes_res = (t~=output); 
 
 disp(bayes_res);
@@ -47,4 +47,4 @@ for i=1 :N
    end
 end
 
-disp("Errors " + errors);
+disp("Errors: " + errors);
