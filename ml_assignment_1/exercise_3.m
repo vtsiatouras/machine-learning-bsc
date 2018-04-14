@@ -23,12 +23,7 @@ out_eucl = euclidean_classifier(m,Y);
 eucl_res = (t~=out_eucl); 
 % disp(eucl_res);
 
-errors_eucl = 0;
-for i=1 :N
-   if(eucl_res(i) == 1)
-       errors_eucl = errors_eucl + 1;
-   end
-end
+errors_eucl = sum(eucl_res);
 disp("Euclidean distance errors: " + errors_eucl);
 
 % Application of the Mahalanobis classifier
@@ -36,12 +31,7 @@ out_maha = mahalanobis_classifier(m,S,Y);
 maha_res = (t~=out_maha); 
 %disp(maha_res);
 
-errors_maha = 0;
-for i=1 :N
-   if(maha_res(i) == 1)
-       errors_maha = errors_maha + 1;
-   end
-end
+errors_maha = sum(maha_res);
 disp("Mahalanobis distance errors: " + errors_maha);
 
 

@@ -6,14 +6,14 @@ m1 = 1;
 m2 = 3;
 s = 1;
 
-% Genereation of X1
-%N1 = 15;
-N1 = 500;
+% Generation of X1
+N1 = 15;
+%N1 = 500;
 X1 = randn(1,N1)+m1;
 
 % Generation of X2
-%N2 = 15;
-N2 = 500;
+N2 = 15;
+%N2 = 500;
 X2 = randn(1,N2)+m2;
 
 % Generation of Y
@@ -46,13 +46,7 @@ end
 % if bayes_res(i)=1 then the i-th point is correctly classified
 bayes_res = (t~=output);
 
-errors_bayes = 0;
-for i=1 :N
-   if(bayes_res(i) == 1)
-       errors_bayes = errors_bayes + 1;
-   end
-end
-
+errors_bayes = sum(bayes_res);
 disp("Errors Bayes: " + errors_bayes);
 
 
@@ -71,11 +65,5 @@ end
 % if point is correctly classified bayes_res_ML(i)=1 then the i-th
 bayes_res_ML = (t~=output_ML); 
 
-errors_bayes_ML = 0;
-for i=1 :N
-   if(bayes_res_ML(i) == 1)
-       errors_bayes_ML = errors_bayes_ML + 1;
-   end
-end
-
+errors_bayes_ML = sum(bayes_res_ML);
 disp("Errors Bayes ML: " + errors_bayes_ML);
