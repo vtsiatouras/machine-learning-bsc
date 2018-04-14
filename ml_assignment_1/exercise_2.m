@@ -40,11 +40,5 @@ bayes_res = (t~=output);
 
 disp(bayes_res);
 
-errors = 0;
-for i=1 :N
-   if(bayes_res(i) == 1)
-       errors = errors + 1;
-   end
-end
-
+errors = sum(bayes_res);
 disp("Errors: " + errors);

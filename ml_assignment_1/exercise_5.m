@@ -7,13 +7,13 @@ m2 = 3;
 s = 1;
 
 % Genereation of X1
-%N1 = 500;
-N1 = 400;
+N1 = 200;
+%N1 = 40;
 X1 = randn(1,N1)+m1;
 
 % Generation of X2
-%N2 = 500;
-N2 = 400;
+N2 = 200;
+%N2 = 40;
 X2 = randn(1,N2)+m2;
 
 % Generation of Y
@@ -43,15 +43,8 @@ end
 % if bayes_res(i)=1 then the i-th correctly classified
 bayes_res=(t~=output);
 
-errors_bayes = 0;
-for i=1 :N
-   if(bayes_res(i) == 1)
-       errors_bayes = errors_bayes + 1;
-   end
-end
-
+errors_bayes = sum(bayes_res);
 disp("Errors Bayes: " + errors_bayes);
-
 
 % Bayes rule for the case where Parzen estimations are used
 h = 0.2;
@@ -71,11 +64,5 @@ end
 %if bayes_res_ML(i)=1 then the i-th point is correctly classified
 bayes_res_Parzen = (t~=output_Parzen); 
 
-errors_bayes_Par = 0;
-for i=1 :N
-   if(bayes_res_Parzen(i) == 1)
-       errors_bayes_Par = errors_bayes_Par + 1;
-   end
-end
-
+errors_bayes_Par = sum(bayes_res_Parzen);
 disp("Errors Bayes Parzen: " + errors_bayes_Par);
