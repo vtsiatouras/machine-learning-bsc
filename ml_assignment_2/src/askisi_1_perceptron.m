@@ -17,10 +17,10 @@ x_2=[2 2]'; %for X2
 x_3=[0 2]'; %for X3
 x_4=[1 1]'; %for X4
 
-X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_1*ones(1,N(2))];
+%X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_1*ones(1,N(2))];
 %X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_2*ones(1,N(2))];
 %X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_3*ones(1,N(2))];
-%X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_4*ones(1,N(2))];
+X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_4*ones(1,N(2))];
 X1=[X1; ones(1,sum(N))];
 y1=[-ones(1,N(1)) ones(1,N(2))];
 
@@ -30,7 +30,10 @@ X1(1,y1==-1),X1(2,y1==-1),'r.')
 figure(1), axis equal
 
 % 2. Run the perceptron algorithm for X1 with learning parameter 0.01
-rho=0.01; % Learning rate
-w_ini=[1 1 -0.5]';
+% Learning rate
+rho=0.01; 
+%rho=0.05
+%w_ini=[1 1 -0.5]';
+w_ini=[1 1 0.5]';
 [w,iter,mis_clas]=perce(X1,y1,w_ini,rho)
 
