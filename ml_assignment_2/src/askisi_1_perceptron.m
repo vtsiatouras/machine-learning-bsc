@@ -12,12 +12,15 @@ rand('seed',0);
 N=[100 100]; % 100 vectors per class
 l=2; % Dimensionality of the input space
 
-x=[3 3]';
-% x=[2 2]'; for X2
-% x=[0 2]'; for X3
-% x=[1 1]'; for X4
+x_1=[3 3]';
+x_2=[2 2]'; %for X2
+x_3=[0 2]'; %for X3
+x_4=[1 1]'; %for X4
 
-X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x*ones(1,N(2))];
+X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_1*ones(1,N(2))];
+%X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_2*ones(1,N(2))];
+%X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_3*ones(1,N(2))];
+%X1=[2*rand(l,N(1)) 2*rand(l,N(2))+x_4*ones(1,N(2))];
 X1=[X1; ones(1,sum(N))];
 y1=[-ones(1,N(1)) ones(1,N(2))];
 
