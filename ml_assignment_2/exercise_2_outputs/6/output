@@ -1,0 +1,86 @@
+
+
+kernel = 'linear'
+The algorithm has not converged. This may be due to:
+ (a) the maximum number of iterations has been reached and convergence has not, yet, been achieved or 
+ (b) the chosen values for the hyperparameters (C as well as the parameters that define the kernel function) 
+ can not lead to a solution. 
+marg = 1.3261
+Pe_train = 0.4222
+Pe_test = 0.4444
+sup_vec = 269
+
+
+kernel = 'poly'
+The algorithm has not converged. This may be due to:
+ (a) the maximum number of iterations has been reached and convergence has not, yet, been achieved or 
+ (b) the chosen values for the hyperparameters (C as well as the parameters that define the kernel function) 
+ can not lead to a solution. 
+Pe_train = 0.4852
+Pe_test = 0.5111
+sup_vec = 12
+
+
+#######################
+		C = 0.2
+#######################
+
+
+kernel = 'rbf'
+The algorithm has not converged. This may be due to:
+ (a) the maximum number of iterations has been reached and convergence has not, yet, been achieved or 
+ (b) the chosen values for the hyperparameters (C as well as the parameters that define the kernel function) 
+ can not lead to a solution. 
+Pe_train = 0.5370
+Pe_test = 0.5370
+sup_vec = 8
+
+
+#######################
+		C = 2
+#######################
+
+kernel = 'rbf'
+Pe_train = 0.0037
+Pe_test = 0.1074
+sup_vec = 228
+
+
+#######################
+		C = 20
+#######################
+
+kernel = 'rbf'
+Pe_train = 0
+Pe_test = 0.1000
+sup_vec = 215
+
+
+#######################
+		C = 200
+#######################
+
+kernel = 'rbf'
+Pe_train = 0
+Pe_test = 0.1000
+sup_vec = 215
+
+
+#######################
+	   C = 2000
+#######################
+
+kernel = 'rbf'
+Pe_train = 0
+Pe_test = 0.1000
+sup_vec = 215
+
+
+#######################
+	   C = 20000
+#######################
+
+kernel = 'rbf'
+Pe_train = 0
+Pe_test = 0.1000
+sup_vec = 215
