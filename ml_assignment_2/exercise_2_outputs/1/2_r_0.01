@@ -1,0 +1,69 @@
+rho = 0.0100
+
+
+#######################
+		X1
+#######################
+
+First Iteration: # Misclassified points = 100 
+
+w = 0.0965
+    0.0940
+   -0.3451
+
+
+iter = 109
+
+
+mis_clas = 0
+
+
+#######################
+		X2
+#######################
+
+First Iteration: # Misclassified points = 100 
+
+w = 0.0965
+    0.0940
+   -0.3451
+
+
+iter = 109
+
+
+mis_clas = 0
+
+
+#######################
+		X3
+#######################
+
+First Iteration: # Misclassified points = 100 
+
+w = 0.0014
+    0.1617
+   -0.3252
+
+
+iter = 1891
+
+
+mis_clas = 0
+
+
+#######################
+		X4
+#######################
+
+First Iteration: # Misclassified points = 100 
+
+w = 0.0116
+    0.0132
+   -0.0440
+
+
+iter = 20000
+
+
+mis_clas = 30
