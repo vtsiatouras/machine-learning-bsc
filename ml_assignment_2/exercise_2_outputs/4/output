@@ -1,0 +1,99 @@
+#######################
+		C = 0.1
+#######################
+
+Pe_tr = 0.0225
+
+
+Pe_te = 0.0325
+
+
+sup_vec = 82
+
+
+marg = 0.9414
+
+
+#######################
+		C = 0.2
+#######################
+
+Pe_tr = 0.0200
+
+
+Pe_te = 0.0300
+
+
+sup_vec = 60
+
+
+marg = 0.8148
+
+
+#######################
+		C = 0.5
+#######################
+
+Pe_tr = 0.0200
+
+
+Pe_te = 0.0325
+
+
+sup_vec = 44
+
+
+marg = 0.7085
+
+
+#######################
+		C = 1
+#######################
+
+Pe_tr = 0.0225
+
+
+Pe_te = 0.0325
+
+
+sup_vec = 37
+
+
+marg = 0.6318
+
+
+#######################
+		C = 2
+#######################
+
+The algorithm has not converged. This may be due to:
+ (a) the maximum number of iterations has been reached and convergence has not, yet, been achieved or 
+ (b) the chosen values for the hyperparameters (C as well as the parameters that define the kernel function) 
+ can not lead to a solution. 
+
+Pe_tr = 0.0200
+
+
+Pe_te = 0.0325
+
+
+sup_vec = 33
+
+
+marg = 0.5700
+
+
+#######################
+		C = 20
+#######################
+
+Pe_tr = 0.0250
+
+
+Pe_te = 0.0350
+
+
+sup_vec = 25
+
+
+marg = 0.3573
