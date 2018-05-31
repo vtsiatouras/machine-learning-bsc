@@ -24,7 +24,7 @@ z1=[ones(1,fix(N1/2)) 2*ones(1,N1-fix(N1/2))];
 % Generate X2 and the required class labels
 %N2=200;
 % N2=10000 % for X3
- N2=100000 % for X4
+N2=100000 % for X4
 randn('seed',100)
 X2=[mvnrnd(m(:,1),S,fix(N2/2)); mvnrnd(m(:,2),S,N2-fix(N2/2))]';
 z2=[ones(1,fix(N2/2)) 2*ones(1,N2-fix(N2/2))];
@@ -48,5 +48,3 @@ y2=2*z2-3;
 [w]=SSErr(X1,y1,0);
 SSE_out=2*(w'*X2>0)-1;
 err_SSE=sum(SSE_out.*y2<0)/sum(N2)
-
-
