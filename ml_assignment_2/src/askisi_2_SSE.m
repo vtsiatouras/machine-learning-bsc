@@ -23,7 +23,7 @@ z1=[ones(1,fix(N1/2)) 2*ones(1,N1-fix(N1/2))];
 
 % Generate X2 and the required class labels
 %N2=200;
-% N2=10000 % for X3
+%N2=10000 % for X3
 N2=100000 % for X4
 randn('seed',100)
 X2=[mvnrnd(m(:,1),S,fix(N2/2)); mvnrnd(m(:,2),S,N2-fix(N2/2))]';
