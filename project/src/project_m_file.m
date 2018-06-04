@@ -52,3 +52,33 @@ for i=1:p
         end
     end
 end
+
+
+N = length(Train_array_pos);
+
+Train_array_category_1=[];
+Train_array_category_2=[];
+Train_array_category_3=[];
+Train_array_category_4=[];
+Train_array_category_5=[];
+
+for i=1:N
+%     fprintf('i:%d, j:%d, category:%d\n', Train_array_pos(i,1), Train_array_pos(i,2), Train_array_response(i));
+    if (Train_array_response(i) == 1)
+        Train_array_category_1=[Train_array_category_1; Train_array_pos(i,1), Train_array_pos(i,2)];
+    elseif (Train_array_response(i) == 2)
+        Train_array_category_2=[Train_array_category_2; Train_array_pos(i,1), Train_array_pos(i,2)];
+    elseif (Train_array_response(i) == 3)
+        Train_array_category_3=[Train_array_category_3; Train_array_pos(i,1), Train_array_pos(i,2)];
+    elseif (Train_array_response(i) == 4)
+        Train_array_category_4=[Train_array_category_4; Train_array_pos(i,1), Train_array_pos(i,2)];
+    elseif (Train_array_response(i) == 5)
+        Train_array_category_5=[Train_array_category_5; Train_array_pos(i,1), Train_array_pos(i,2)];
+    end
+end
+
+figure(6), plotmatrix(Train_array_category_1, '*r');
+figure(7), plotmatrix(Train_array_category_2, '.b');
+figure(8), plotmatrix(Train_array_category_3, 'Og');
+figure(9), plotmatrix(Train_array_category_4, '+b');
+figure(10), plotmatrix(Train_array_category_5, '-r');
