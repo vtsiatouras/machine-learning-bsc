@@ -4,6 +4,26 @@ clear
 format compact
 close all
 
+cont = true;
+classifier = '';
+while(cont)
+    prompt = 'Choose one classifier\n(1) Naive Bayes Classifier\n(2) Minimum Euclidean Distance Classifier\n(3) K-NN\n';
+    classifier = input(prompt,'s');
+    if(isequal(classifier, '1') || isequal(classifier, '2') || isequal(classifier, '3'))
+        cont = false;
+    end
+end
+
+cont = true;
+dataset = '';
+while(cont)
+    prompt = 'Dataset for operation\n(1) Test Dataset\n(2) Operational Dataset\n';
+    dataset = input(prompt,'s');
+    if(isequal(dataset, '1') || isequal(dataset, '2'))
+        cont = false;
+    end
+end
+
 load Salinas_hyperspectral %Load the Salinas hypercube called "Salinas_Image"
 [p, n, l] = size(Salinas_Image) % p,n define the spatial resolution of the image, while l is the number of bands (number of features for each pixel)
 
@@ -54,58 +74,59 @@ for i = 1:p
     end
 end
 
+Operational=zeros(p,n,l); % This is a 3-dim array, which will contain nonzero values only for the training pixels
+Operational_array=[]; %This is the wanted 204xN array
+Operational_array_response=[]; % This vector keeps the label of each of the training pixels
+Operational_array_pos=[]; % This array keeps (in its rows) the position of the training pixels in the image.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% TEST SET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Constructing the 204xN array whose columns are the vectors corresponding to the
-% N vectors (pixels) of the test set (similar codes cane be used for
-% the test and the operational sets).
-Test=zeros(p,n,l); % This is a 3-dim array, which will contain nonzero values only for the training pixels
-for i=1:l
-     %Multiply elementwise each band of the Salinas_Image with the mask
-     % "Training_Set_Image>0", which identifies only the training vectors.
-    Test(:,:,i)=Salinas_Image(:,:,i).*(Test_Set_Image>0);
-    figure(6), imagesc(Test(:,:,i)) % Depict the training set per band
-    pause(0.05)
-end
-
-Test_array=[]; %This is the wanted 204xN array
-Test_array_response=[]; % This vector keeps the label of each of the training pixels
-Test_array_pos=[]; % This array keeps (in its rows) the position of the training pixels in the image.
-for i=1:p
-    for j=1:n
-        if (Test_Set_Image(i, j) > 0)
-            Test_array=[Test_array squeeze(Test(i,j,:))];
-            Test_array_response=[Test_array_response Test_Set_Image(i,j)];
-            Test_array_pos=[Test_array_pos; i j];
+% N vectors (pixels) of the test set.
+if (isequal(dataset, '1'))
+    for i=1:l
+         %Multiply elementwise each band of the Salinas_Image with the mask
+         % "Training_Set_Image>0", which identifies only the training vectors.
+        Operational(:,:,i)=Salinas_Image(:,:,i).*(Test_Set_Image>0);
+        figure(6), imagesc(Operational(:,:,i)) % Depict the training set per band
+        pause(0.05)
+    end  
+    for i=1:p
+        for j=1:n
+            if (Test_Set_Image(i, j) > 0)
+                Operational_array=[Operational_array squeeze(Operational(i,j,:))];
+                Operational_array_response=[Operational_array_response Test_Set_Image(i,j)];
+                Operational_array_pos=[Operational_array_pos; i j];
+            end
         end
     end
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% OPERATIONAL SET %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Constructing the 204xN array whose columns are the vectors corresponding to the
-% N vectors (pixels) of the operation set (similar codes cane be used for
-% the test and the operational sets).
-Operational=zeros(p,n,l); % This is a 3-dim array, which will contain nonzero values only for the training pixels
-for i=1:l
-     %Multiply elementwise each band of the Salinas_Image with the mask
-     % "Training_Set_Image>0", which identifies only the training vectors.
-    Operational(:,:,i)=Salinas_Image(:,:,i).*(Operational_Set_Image>0);
-    figure(7), imagesc(Operational(:,:,i)) % Depict the training set per band
-    pause(0.05)
-end
-
-Operational_array=[]; %This is the wanted 204xN array
-Operational_array_response=[]; % This vector keeps the label of each of the training pixels
-Operational_array_pos=[]; % This array keeps (in its rows) the position of the training pixels in the image.
-for i=1:p
-    for j=1:n
-        if (Operational_Set_Image(i,j) > 0)
-            Operational_array=[Operational_array squeeze(Operational(i,j,:))];
-            Operational_array_response=[Operational_array_response Operational_Set_Image(i,j)];
-            Operational_array_pos=[Operational_array_pos; i j];
+% N vectors (pixels) of the operation set.
+if (isequal(dataset, '2'))
+    for i=1:l
+         %Multiply elementwise each band of the Salinas_Image with the mask
+         % "Training_Set_Image>0", which identifies only the training vectors.
+        Operational(:,:,i)=Salinas_Image(:,:,i).*(Operational_Set_Image>0);
+        figure(7), imagesc(Operational(:,:,i)) % Depict the training set per band
+        pause(0.05)
+    end
+    for i=1:p
+        for j=1:n
+            if (Operational_Set_Image(i,j) > 0)
+                Operational_array=[Operational_array squeeze(Operational(i,j,:))];
+                Operational_array_response=[Operational_array_response Operational_Set_Image(i,j)];
+                Operational_array_pos=[Operational_array_pos; i j];
+            end
         end
     end
 end
 
-naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response);
-
-naive_bayes(Train_array, Train_array_pos, Train_array_response, Operational_array, Operational_array_pos, Operational_array_response);
+if (isequal(classifier, '1'))
+    naive_bayes(Train_array, Train_array_pos, Train_array_response, Operational_array, Operational_array_pos, Operational_array_response);
+elseif (isequal(classifier, '2'))
+    disp('WIP');
+elseif (isequal(classifier, '3'))
+    disp('WIP');    
+end
