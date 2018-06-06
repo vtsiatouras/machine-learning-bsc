@@ -1,6 +1,7 @@
 function k_nn_cross_validation (Train_array, Train_array_pos, Train_array_response, k)
 
-    % Cross validation arrays
+    % Cross validation arrays. Each one has the 1/5 size of train set.
+    % Also categories are divided equally to each set
     Cross_array_1 = [];
     Cross_array_1_pos = [];
     Cross_array_1_response = [];
@@ -19,6 +20,7 @@ function k_nn_cross_validation (Train_array, Train_array_pos, Train_array_respon
     
     [Cross_array_1, Cross_array_1_pos, Cross_array_1_response, Cross_array_2, Cross_array_2_pos, Cross_array_2_response, Cross_array_3, Cross_array_3_pos, Cross_array_3_response, Cross_array_4, Cross_array_4_pos, Cross_array_4_response, Cross_array_5, Cross_array_5_pos, Cross_array_5_response] = split_dataset(Train_array, Train_array_pos, Train_array_response);
    
+    % Concatenate cross arrays to create train sets
     Train_array_1 = [Cross_array_2 Cross_array_3 Cross_array_4 Cross_array_5];
     Train_array_1_response = [Cross_array_2_response Cross_array_3_response Cross_array_4_response Cross_array_5_response];
     Train_array_2 = [Cross_array_1 Cross_array_3 Cross_array_4 Cross_array_5];

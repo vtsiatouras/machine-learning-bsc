@@ -1,10 +1,12 @@
 % Minimum Euclidean Distance Implementation
 
 function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
+    
     % Plot datasets
     plot_dataset(Train_array_pos, Train_array_response, 'Train Dataset');
     plot_dataset(Test_array_pos, Test_array_response, 'Test Dataset');
     plot_dataset(Operational_array_pos, Operational_array_response, 'Operational Dataset');
+    drawnow('update');
     
     N = length(Train_array_pos);
     Train_array_category_1 = [];

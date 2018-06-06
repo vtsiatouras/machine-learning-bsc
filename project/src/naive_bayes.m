@@ -6,6 +6,7 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     plot_dataset(Train_array_pos, Train_array_response, 'Train Dataset');
     plot_dataset(Test_array_pos, Test_array_response, 'Test Dataset');
     plot_dataset(Operational_array_pos, Operational_array_response, 'Operational Dataset');
+    drawnow('update');
     
     N = length(Train_array_pos);
     Train_array_category_1 = [];
@@ -38,11 +39,11 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     Train_array_category_5 = Train_array_category_5';
     
     % Number of elements per category
-    N1 = length(Train_array_category_1);
-    N2 = length(Train_array_category_2);
-    N3 = length(Train_array_category_3);
-    N4 = length(Train_array_category_4);
-    N5 = length(Train_array_category_5);
+    N1 = size(Train_array_category_1, 1);
+    N2 = size(Train_array_category_2, 1);
+    N3 = size(Train_array_category_3, 1);
+    N4 = size(Train_array_category_4, 1);
+    N5 = size(Train_array_category_5, 1);
 
     % Sigma of the categories
     s1 = std(Train_array_category_1);

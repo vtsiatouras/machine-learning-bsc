@@ -26,6 +26,7 @@ function classifier_stats(Results, Dataset_array_response, Dataset_array_pos, Da
     end    
     
     hold off
+    drawnow('update');
         
     correct = N - errors;
     accuracy = (correct/N) * 100;
