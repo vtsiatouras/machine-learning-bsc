@@ -6,23 +6,13 @@ close all
 
 cont = true;
 classifier = '';
-while(cont)
+while (cont)
     prompt = 'Choose one classifier\n(1) Naive Bayes Classifier\n(2) Minimum Euclidean Distance Classifier\n(3) K-NN\n';
     classifier = input(prompt,'s');
-    if(isequal(classifier, '1') || isequal(classifier, '2') || isequal(classifier, '3'))
+    if (isequal(classifier, '1') || isequal(classifier, '2') || isequal(classifier, '3'))
         cont = false;
     end
 end
-
-% cont = true;
-% dataset = '';
-% while(cont)
-%     prompt = 'Dataset for operation\n(1) Test Dataset\n(2) Operational Dataset\n';
-%     dataset = input(prompt,'s');
-%     if(isequal(dataset, '1') || isequal(dataset, '2'))
-%         cont = false;
-%     end
-% end
 
 load Salinas_hyperspectral %Load the Salinas hypercube called "Salinas_Image"
 [p, n, l] = size(Salinas_Image) % p,n define the spatial resolution of the image, while l is the number of bands (number of features for each pixel)
@@ -38,7 +28,7 @@ Operational_Set_Image = reshape(Operational_Set, p, n);
 %Depicting the various bands of the Salinas image
 for i = 1:l
     figure(1), imagesc(Salinas_Image(:, :, i))
-    pause(0.05) % This command freezes figure(1) for 0.05sec.
+    %pause(0.05) % This command freezes figure(1) for 0.05sec.
 end
 
 % Depicting the training, test and operational sets of pixels (for the
@@ -58,7 +48,7 @@ for i = 1:l
     % "Training_Set_Image>0", which identifies only the training vectors.
     Train(:, :, i) = Salinas_Image(:, :, i) .* (Training_Set_Image > 0);
     figure(5), imagesc(Train(:, :, i)) % Depict the training set per band
-    pause(0.05)
+   % pause(0.05)
 end
 
 Train_array = []; %This is the wanted 204xN array
@@ -84,7 +74,7 @@ for i=1:l
      % "Training_Set_Image>0", which identifies only the training vectors.
     Test(:,:,i)=Salinas_Image(:,:,i).*(Test_Set_Image>0);
     figure(6), imagesc(Test(:,:,i)) % Depict the training set per band
-    pause(0.05)
+  %  pause(0.05)
 end  
 Test_array=[]; %This is the wanted 204xN array
 Test_array_response=[]; % This vector keeps the label of each of the training pixels
@@ -109,7 +99,7 @@ for i=1:l
      % "Training_Set_Image>0", which identifies only the training vectors.
     Operational(:,:,i)=Salinas_Image(:,:,i).*(Operational_Set_Image>0);
     figure(7), imagesc(Operational(:,:,i)) % Depict the training set per band
-    pause(0.05)
+    %pause(0.05)
 end
 Operational_array=[]; %This is the wanted 204xN array
 Operational_array_response=[]; % This vector keeps the label of each of the training pixels
@@ -129,5 +119,5 @@ if (isequal(classifier, '1'))
 elseif (isequal(classifier, '2'))
     minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response);
 elseif (isequal(classifier, '3'))
-    disp('WIP');    
+     k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response);    
 end

@@ -34,5 +34,6 @@ function plot_dataset(Dataset_array_pos, Dataset_array_response, Dataset_name)
     plot(Dataset_array_category_4_pos(:,1), Dataset_array_category_4_pos(:,2), 'y*');
     plot(Dataset_array_category_5_pos(:,1), Dataset_array_category_5_pos(:,2), 'm*');
     hold off;
+    drawnow('update');
         
 end

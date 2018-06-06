@@ -37,5 +37,5 @@ function k_nn_algorithm(Train_array, Train_array_response, Validation_array, Val
                
     end
     
-    classifier_stats(output, Validation_array_response, Validation_array_pos, Mode, 'KNN');
+    classifier_stats(output, Validation_array_response, Validation_array_pos, Mode, 'k-NN');
 end
