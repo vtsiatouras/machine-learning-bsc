@@ -127,7 +127,7 @@ end
 if (isequal(classifier, '1'))
     naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response);
 elseif (isequal(classifier, '2'))
-    disp('WIP');
+    minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response);
 elseif (isequal(classifier, '3'))
     disp('WIP');    
 end

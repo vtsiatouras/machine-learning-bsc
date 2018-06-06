@@ -9,34 +9,24 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     
     N = length(Train_array_pos);
     Train_array_category_1 = [];
-    Train_array_category_1_pos = [];
     Train_array_category_2 = [];
-    Train_array_category_2_pos = [];
     Train_array_category_3 = [];
-    Train_array_category_3_pos = [];
     Train_array_category_4 = [];
-    Train_array_category_4_pos = [];
     Train_array_category_5 = [];
-    Train_array_category_5_pos = [];
 
     % Split train dataset to 5 arrays that contain elements from same
     % category
     for i = 1:N
         if (Train_array_response(i) == 1)
-            Train_array_category_1 = [Train_array_category_1 Train_array(:,i)];
-            Train_array_category_1_pos = [Train_array_category_1_pos; Train_array_pos(i, 1), Train_array_pos(i, 2)];
+            Train_array_category_1 = [Train_array_category_1 Train_array(:,i)]; 
         elseif (Train_array_response(i) == 2)
             Train_array_category_2 = [Train_array_category_2 Train_array(:,i)];
-            Train_array_category_2_pos = [Train_array_category_2_pos; Train_array_pos(i, 1), Train_array_pos(i, 2)];
         elseif (Train_array_response(i) == 3)
             Train_array_category_3 = [Train_array_category_3 Train_array(:,i)];
-            Train_array_category_3_pos = [Train_array_category_3_pos; Train_array_pos(i, 1), Train_array_pos(i, 2)];
         elseif (Train_array_response(i) == 4)
             Train_array_category_4 = [Train_array_category_4 Train_array(:,i)];
-            Train_array_category_4_pos = [Train_array_category_4_pos; Train_array_pos(i, 1), Train_array_pos(i, 2)];
         elseif (Train_array_response(i) == 5)
             Train_array_category_5 = [Train_array_category_5 Train_array(:,i)];
-            Train_array_category_5_pos = [Train_array_category_5_pos; Train_array_pos(i, 1), Train_array_pos(i, 2)];
         end
     end
     
@@ -78,7 +68,6 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     fprintf('##########################\n');
     fprintf('        TEST SET\n')
     fprintf('##########################\n');
-   
     % Vector containing the class labels of
     output = [];
 
@@ -131,8 +120,8 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     fprintf('##########################\n');
     % Vector containing the class labels of
     output = [];
-    N_Operation = length(Operational_array_pos);
-    for i = 1:N_Operation
+    N_Operational = length(Operational_array_pos);
+    for i = 1:N_Operational
         point = Operational_array(:, i)';
 
         % Calculate normal distribution probabilities
