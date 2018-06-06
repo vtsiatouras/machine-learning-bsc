@@ -39,12 +39,6 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Operati
     Train_array_category_4 = Train_array_category_4';
     Train_array_category_5 = Train_array_category_5';
 
-    % figure(7), plotmatrix(Train_array_category_1, '*r');
-    % figure(8), plotmatrix(Train_array_category_2, '.b');
-    % figure(9), plotmatrix(Train_array_category_3, 'Og');
-    % figure(10), plotmatrix(Train_array_category_4, '+b');
-    % figure(11), plotmatrix(Train_array_category_5, '-r');
-
     % Number of elements per category
     N1 = length(Train_array_category_1);
     N2 = length(Train_array_category_2);
@@ -77,7 +71,6 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Operati
     output = [];
 
     N_Operation = length(Operational_array_pos);
-    disp(N_Operation);
     for i = 1:N_Operation
         point = Operational_array(:, i)';
 
@@ -104,26 +97,44 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Operati
 
         max_probability = max(bayes_rule);
 
-        if (max_probability == bayes_rule_1)
+        if (isequal(max_probability, bayes_rule_1))
             output = [output 1];
-        elseif (max_probability == bayes_rule_2)
+        elseif (isequal(max_probability, bayes_rule_2))
             output = [output 2];
-        elseif (max_probability == bayes_rule_3)
+        elseif (isequal(max_probability, bayes_rule_3))
             output = [output 3];
-        elseif (max_probability == bayes_rule_4)
+        elseif (isequal(max_probability, bayes_rule_4))
             output = [output 4];
-        elseif (max_probability == bayes_rule_5)
+        elseif (isequal(max_probability, bayes_rule_5))
             output = [output 5];
         end
     end
 
     errors = 0;
+   
+    figure('Name','Naive Bayes Classifier','NumberTitle','off'), axis equal
+    hold on
     for i = 1:N_Operation
         if(output(i) ~= Operational_array_response(i))
             errors = errors + 1;
         end
-    end
+        
+        if(isequal(output(i),1))
+            plot(Operational_array_pos(i,1), Operational_array_pos(i,2), 'bo');
+        elseif(isequal(output(i),2))
+            plot(Operational_array_pos(i,1), Operational_array_pos(i,2), 'ko');
+        elseif(isequal(output(i),3))
+            plot(Operational_array_pos(i,1), Operational_array_pos(i,2), 'go');
+        elseif(isequal(output(i),4))
+            plot(Operational_array_pos(i,1), Operational_array_pos(i,2), 'yo');
+        elseif(isequal(output(i),5))
+            plot(Operational_array_pos(i,1), Operational_array_pos(i,2), 'mo'); 
+        end
+    end    
+    hold off
+        
     correct = N_Operation - errors;
     accuracy = (correct/N_Operation) * 100;
-    fprintf('Accuracy: %.2f%%\n', accuracy);
+    fprintf('Accuracy: %.2f%%\nErros: %d\n', accuracy, errors);
+    
 end
