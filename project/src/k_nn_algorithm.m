@@ -1,4 +1,4 @@
-function k_nn_algorithm(Train_array, Train_array_response, Validation_array, Validation_array_pos, Validation_array_response, k, Mode)
+function accuracy=k_nn_algorithm(Train_array, Train_array_response, Validation_array, Validation_array_pos, Validation_array_response, k, Mode)
     % Vector containing the class labels of
     output = [];
     
@@ -37,5 +37,5 @@ function k_nn_algorithm(Train_array, Train_array_response, Validation_array, Val
                
     end
     
-    classifier_stats(output, Validation_array_response, Validation_array_pos, Mode, 'k-NN');
+    accuracy = classifier_stats(output, Validation_array_response, Validation_array_pos, Mode, 'k-NN');
 end

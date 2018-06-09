@@ -1,4 +1,4 @@
-function classifier_stats(Results, Dataset_array_response, Dataset_array_pos, Dataset_name, Classifier_name)
+function accuracy = classifier_stats(Results, Dataset_array_response, Dataset_array_pos, Dataset_name, Classifier_name)
     
     N = length(Dataset_array_pos);
     errors = 0;
@@ -30,7 +30,7 @@ function classifier_stats(Results, Dataset_array_response, Dataset_array_pos, Da
         
     correct = N - errors;
     accuracy = (correct/N) * 100;
-    fprintf('Accuracy: %.2f%%\nErros: %d\n', accuracy, errors);
+    fprintf('Accuracy: %.2f%%\nErrors: %d\n', accuracy, errors);
     
     C = confusionmat(Dataset_array_response, Results);
     disp(C);

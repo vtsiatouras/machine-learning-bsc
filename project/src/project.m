@@ -7,7 +7,7 @@ close all
 cont = true;
 classifier = '';
 while (cont)
-    prompt = 'Choose one classifier\n(1) Naive Bayes Classifier\n(2) Minimum Euclidean Distance Classifier\n(3) K-NN\n';
+    prompt = 'Choose one classifier\n(1) Naive Bayes Classifier\n(2) Minimum Euclidean Distance Classifier\n(3) k-NN\n';
     classifier = input(prompt,'s');
     if (isequal(classifier, '1') || isequal(classifier, '2') || isequal(classifier, '3'))
         cont = false;
@@ -15,7 +15,7 @@ while (cont)
 end
 
 load Salinas_hyperspectral %Load the Salinas hypercube called "Salinas_Image"
-[p, n, l] = size(Salinas_Image) % p,n define the spatial resolution of the image, while l is the number of bands (number of features for each pixel)
+[p, n, l] = size(Salinas_Image); % p,n define the spatial resolution of the image, while l is the number of bands (number of features for each pixel)
 
 load classification_labels
 % This file contains three arrays of dimension 22500x1 each, called
