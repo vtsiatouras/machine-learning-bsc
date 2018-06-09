@@ -22,8 +22,8 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
             end
         end
         
-        % Make a 5-fold cross validarion
-        k_nn_cross_validation (Train_array, Train_array_pos, Train_array_response, k);
+        % Make a 5-fold cross validation
+        k_nn_5_fold_cross_validation (Train_array, Train_array_pos, Train_array_response, k);
         
         cont3 = true;
         while(cont3)
