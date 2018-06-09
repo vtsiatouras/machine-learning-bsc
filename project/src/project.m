@@ -47,8 +47,8 @@ for i = 1:l
     %Multiply elementwise each band of the Salinas_Image with the mask
     % "Training_Set_Image>0", which identifies only the training vectors.
     Train(:, :, i) = Salinas_Image(:, :, i) .* (Training_Set_Image > 0);
-    figure(5), imagesc(Train(:, :, i)) % Depict the training set per band
-   % pause(0.05)
+    % figure(5), imagesc(Train(:, :, i)) % Depict the training set per band
+    % pause(0.05)
 end
 
 Train_array = []; %This is the wanted 204xN array
@@ -73,7 +73,7 @@ for i=1:l
      %Multiply elementwise each band of the Salinas_Image with the mask
      % "Training_Set_Image>0", which identifies only the training vectors.
     Test(:,:,i)=Salinas_Image(:,:,i).*(Test_Set_Image>0);
-    figure(6), imagesc(Test(:,:,i)) % Depict the training set per band
+  %  figure(6), imagesc(Test(:,:,i)) % Depict the training set per band
   %  pause(0.05)
 end  
 Test_array=[]; %This is the wanted 204xN array
@@ -98,8 +98,8 @@ for i=1:l
      %Multiply elementwise each band of the Salinas_Image with the mask
      % "Training_Set_Image>0", which identifies only the training vectors.
     Operational(:,:,i)=Salinas_Image(:,:,i).*(Operational_Set_Image>0);
-    figure(7), imagesc(Operational(:,:,i)) % Depict the training set per band
-    %pause(0.05)
+    % figure(7), imagesc(Operational(:,:,i)) % Depict the training set per band
+    % pause(0.05)
 end
 Operational_array=[]; %This is the wanted 204xN array
 Operational_array_response=[]; % This vector keeps the label of each of the training pixels

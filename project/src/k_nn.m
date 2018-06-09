@@ -17,7 +17,7 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
         while (cont2)
             prompt = 'Enter number of k neighbors (integers 1-17 are allowed)\n';
             k = input(prompt);
-            if(k > 1 && k < 17)
+            if(k >= 1 && k <= 17)
                 cont2 = false;
             end
         end
