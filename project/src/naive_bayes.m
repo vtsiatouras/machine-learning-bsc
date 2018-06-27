@@ -77,40 +77,32 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         point = Test_array(:, i)';
 
         % Calculate normal distribution probabilities
-        p1 = normcdf(point, m1_ML, s1);
-        p2 = normcdf(point, m2_ML, s2);
-        p3 = normcdf(point, m3_ML, s3);
-        p4 = normcdf(point, m4_ML, s4);
-        p5 = normcdf(point, m5_ML, s5);
-
-        % Calculate the product of p1, p2, ..., p204
-        p1_prod = prod(p1);
-        p2_prod = prod(p2);
-        p3_prod = prod(p3);
-        p4_prod = prod(p4);
-        p5_prod = prod(p5);
-
-        % Application of the Bayes rule
-        bayes_rule_1 = P1*p1_prod;
-        bayes_rule_2 = P2*p2_prod; 
-        bayes_rule_3 = P3*p3_prod;
-        bayes_rule_4 = P4*p4_prod;
-        bayes_rule_5 = P5*p5_prod;
+        p1 = normpdf(point, m1_ML, s1);
+        p2 = normpdf(point, m2_ML, s2);
+        p3 = normpdf(point, m3_ML, s3);
+        p4 = normpdf(point, m4_ML, s4);
+        p5 = normpdf(point, m5_ML, s5);
+        
+        % Calulate Sum(log(p(Xi|Ck)
+        p1_sum = sum(log(p1));
+        p2_sum = sum(log(p2));
+        p3_sum = sum(log(p3));
+        p4_sum = sum(log(p4));
+        p5_sum = sum(log(p5));
+        
+        % Apply Bayes log formula
+        % argmax(k) (log(P(Ck) + Sum(log(p(Xi|Ck))
+        bayes_rule_1 = [log(P1)+p1_sum 1];
+        bayes_rule_2 = [log(P2)+p2_sum 2]; 
+        bayes_rule_3 = [log(P3)+p3_sum 3];
+        bayes_rule_4 = [log(P4)+p4_sum 4];
+        bayes_rule_5 = [log(P5)+p5_sum 5];
 
         % Find the maximum probability
-        bayes_rule = [bayes_rule_1 bayes_rule_2 bayes_rule_3 bayes_rule_4 bayes_rule_5];
-        max_probability = max(bayes_rule);
-        if (isequal(max_probability, bayes_rule_1))
-            output = [output 1];
-        elseif (isequal(max_probability, bayes_rule_2))
-            output = [output 2];
-        elseif (isequal(max_probability, bayes_rule_3))
-            output = [output 3];
-        elseif (isequal(max_probability, bayes_rule_4))
-            output = [output 4];
-        elseif (isequal(max_probability, bayes_rule_5))
-            output = [output 5];
-        end
+        bayes_rule = [bayes_rule_1; bayes_rule_2; bayes_rule_3; bayes_rule_4; bayes_rule_5];
+        [max_probability, index_max] = max(bayes_rule(:,1));
+        output = [output bayes_rule(index_max, 2)];
+
     end
     
     classifier_stats(output, Test_array_response, Test_array_pos, 'Test Dataset', 'Naive Bayes');
@@ -125,41 +117,32 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     for i = 1:N_Operational
         point = Operational_array(:, i)';
 
-        % Calculate normal distribution probabilities
-        p1 = normcdf(point, m1_ML, s1);
-        p2 = normcdf(point, m2_ML, s2);
-        p3 = normcdf(point, m3_ML, s3);
-        p4 = normcdf(point, m4_ML, s4);
-        p5 = normcdf(point, m5_ML, s5);
-
-        % Calculate the product of p1, p2, ..., p204
-        p1_prod = prod(p1);
-        p2_prod = prod(p2);
-        p3_prod = prod(p3);
-        p4_prod = prod(p4);
-        p5_prod = prod(p5);
-
-        % Application of the Bayes rule
-        bayes_rule_1 = P1*p1_prod;
-        bayes_rule_2 = P2*p2_prod; 
-        bayes_rule_3 = P3*p3_prod;
-        bayes_rule_4 = P4*p4_prod;
-        bayes_rule_5 = P5*p5_prod;
+       % Calculate normal distribution probabilities
+        p1 = normpdf(point, m1_ML, s1);
+        p2 = normpdf(point, m2_ML, s2);
+        p3 = normpdf(point, m3_ML, s3);
+        p4 = normpdf(point, m4_ML, s4);
+        p5 = normpdf(point, m5_ML, s5);
+        
+        % Calulate Sum(log(p(Xi|Ck)
+        p1_sum = sum(log(p1));
+        p2_sum = sum(log(p2));
+        p3_sum = sum(log(p3));
+        p4_sum = sum(log(p4));
+        p5_sum = sum(log(p5));
+        
+        % Apply Bayes log formula
+        % argmax(k) (log(P(Ck) + Sum(log(p(Xi|Ck))
+        bayes_rule_1 = [log(P1)+p1_sum 1];
+        bayes_rule_2 = [log(P2)+p2_sum 2]; 
+        bayes_rule_3 = [log(P3)+p3_sum 3];
+        bayes_rule_4 = [log(P4)+p4_sum 4];
+        bayes_rule_5 = [log(P5)+p5_sum 5];
 
         % Find the maximum probability
-        bayes_rule = [bayes_rule_1 bayes_rule_2 bayes_rule_3 bayes_rule_4 bayes_rule_5];
-        max_probability = max(bayes_rule);
-        if (isequal(max_probability, bayes_rule_1))
-            output = [output 1];
-        elseif (isequal(max_probability, bayes_rule_2))
-            output = [output 2];
-        elseif (isequal(max_probability, bayes_rule_3))
-            output = [output 3];
-        elseif (isequal(max_probability, bayes_rule_4))
-            output = [output 4];
-        elseif (isequal(max_probability, bayes_rule_5))
-            output = [output 5];
-        end
+        bayes_rule = [bayes_rule_1; bayes_rule_2; bayes_rule_3; bayes_rule_4; bayes_rule_5];
+        [max_probability, index_max] = max(bayes_rule(:,1));
+        output = [output bayes_rule(index_max, 2)];
     end
     
     classifier_stats(output, Operational_array_response, Operational_array_pos, 'Operational Dataset', 'Naive Bayes');
