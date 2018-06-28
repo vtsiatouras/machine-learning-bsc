@@ -159,8 +159,8 @@ function k_nn_5_fold_cross_validation (Train_array, Train_array_pos, Train_array
             Train_array_category_4_pos(validation_splits_category_4{fold,1}, 1) Train_array_category_4_pos(validation_splits_category_4{fold,1}, 2); ...
             Train_array_category_5_pos(validation_splits_category_5{fold,1}, 1) Train_array_category_5_pos(validation_splits_category_5{fold,1}, 2);];
               
-        fold_name = "Fold " + fold;
-        [fold_accuracy] = k_nn_algorithm(train_set, train_set_response, validation_set, validation_set_pos, validation_set_response, k, fold_name);
+        fprintf('\nFold %d\n', fold);
+        [fold_accuracy, set_estimations] = k_nn_algorithm(train_set, train_set_response, validation_set, validation_set_response, k);
         accuracy = accuracy + fold_accuracy;
     end
     
