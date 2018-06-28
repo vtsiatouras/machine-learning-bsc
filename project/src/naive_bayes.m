@@ -2,6 +2,8 @@
 
 function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
     
+    tic;
+    
     % Plot datasets   
     complete_dataset_array_response = [Train_array_response Test_array_response Operational_array_response];
     complete_dataset_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
@@ -103,7 +105,7 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         test_set_estimations = [test_set_estimations bayes_rule(index_max, 2)];
 
     end
-    
+        
     classifier_stats(test_set_estimations, Test_array_response);
    
     fprintf('\n##########################\n');
@@ -143,11 +145,13 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         [max_probability, index_max] = max(bayes_rule(:,1));
         operational_set_estimations = [operational_set_estimations bayes_rule(index_max, 2)];
     end
-       
+        
     classifier_stats(operational_set_estimations, Operational_array_response);
     
     result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
     result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
     plot_dataset(result_array_pos, result_array_response, 'Naive Bayes Result');
     
+    time = toc;
+    fprintf('\nClassification Execution Time: %f seconds\n', time);
 end
