@@ -42,6 +42,8 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
         end
     end
     
+    tic;
+    
     fprintf('##########################\n');
     fprintf('        TEST SET\n')
     fprintf('##########################\n');
@@ -55,4 +57,7 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
     result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
     result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
     plot_dataset(result_array_pos, result_array_response, 'k-NN Result');
+    
+    time = toc;
+    fprintf('\nClassification Execution Time (cross validation execution time is excluded): %f seconds\n', time);
 end

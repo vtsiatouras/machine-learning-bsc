@@ -2,6 +2,8 @@
 
 function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
     
+    tic;
+    
     % Plot datasets   
     complete_dataset_array_response = [Train_array_response Test_array_response Operational_array_response];
     complete_dataset_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
@@ -67,7 +69,7 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
     end
     
     classifier_stats(test_set_estimations, Test_array_response);
-    
+   
     fprintf('\n##########################\n');
     fprintf('      OPERATIONAL SET\n')
     fprintf('##########################\n');
@@ -88,11 +90,14 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
         [min_distance, index_min] = min(distances(:,1));
         operational_set_estimations = [operational_set_estimations distances(index_min, 2)];       
     end
-    
+        
     classifier_stats(operational_set_estimations, Operational_array_response);
     
     result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
     result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
     plot_dataset(result_array_pos, result_array_response, 'Minimum Euclidean Distance Result');
+    
+    time = toc;
+    fprintf('\nClassification Execution Time: %f seconds\n', time);
     
 end
