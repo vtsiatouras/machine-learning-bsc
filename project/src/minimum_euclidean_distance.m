@@ -54,27 +54,16 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
     N_Test = length(Test_array_pos);
     for i = 1:N_Test
         point = Test_array(:, i)';
-        distance_1 = pdist2(point, m1, 'euclidean');
-        distance_2 = pdist2(point, m2, 'euclidean');
-        distance_3 = pdist2(point, m3, 'euclidean');
-        distance_4 = pdist2(point, m4, 'euclidean');
-        distance_5 = pdist2(point, m5, 'euclidean');
+        distance_1 = [pdist2(point, m1, 'euclidean') 1];
+        distance_2 = [pdist2(point, m2, 'euclidean') 2];
+        distance_3 = [pdist2(point, m3, 'euclidean') 3];
+        distance_4 = [pdist2(point, m4, 'euclidean') 4];
+        distance_5 = [pdist2(point, m5, 'euclidean') 5];
         
         % Find the minimum distance
-        distances = [distance_1 distance_2 distance_3 distance_4 distance_5];
-        min_distance= min(distances);
-        if (isequal(min_distance, distance_1))
-            output = [output 1];
-        elseif (isequal(min_distance, distance_2))
-            output = [output 2];
-        elseif (isequal(min_distance, distance_3))
-            output = [output 3];
-        elseif (isequal(min_distance, distance_4))
-            output = [output 4];
-        elseif (isequal(min_distance, distance_5))
-            output = [output 5];
-        end
-       
+        distances = [distance_1; distance_2; distance_3; distance_4; distance_5];
+        [min_distance, index_min] = min(distances(:,1));
+        output = [output distances(index_min, 2)];       
     end
     
     classifier_stats(output, Test_array_response, Test_array_pos, 'Test Dataset', 'Minimum Euclidean Distance');
@@ -88,27 +77,16 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
     N_Operational = length(Operational_array_pos);
     for i = 1:N_Operational
         point = Operational_array(:, i)';
-        distance_1 = pdist2(point, m1, 'euclidean');
-        distance_2 = pdist2(point, m2, 'euclidean');
-        distance_3 = pdist2(point, m3, 'euclidean');
-        distance_4 = pdist2(point, m4, 'euclidean');
-        distance_5 = pdist2(point, m5, 'euclidean');
+        distance_1 = [pdist2(point, m1, 'euclidean') 1];
+        distance_2 = [pdist2(point, m2, 'euclidean') 2];
+        distance_3 = [pdist2(point, m3, 'euclidean') 3];
+        distance_4 = [pdist2(point, m4, 'euclidean') 4];
+        distance_5 = [pdist2(point, m5, 'euclidean') 5];
         
         % Find the minimum distance
-        distances = [distance_1 distance_2 distance_3 distance_4 distance_5];
-        min_distance= min(distances);
-        if (isequal(min_distance, distance_1))
-            output = [output 1];
-        elseif (isequal(min_distance, distance_2))
-            output = [output 2];
-        elseif (isequal(min_distance, distance_3))
-            output = [output 3];
-        elseif (isequal(min_distance, distance_4))
-            output = [output 4];
-        elseif (isequal(min_distance, distance_5))
-            output = [output 5];
-        end
-       
+        distances = [distance_1; distance_2; distance_3; distance_4; distance_5];
+        [min_distance, index_min] = min(distances(:,1));
+        output = [output distances(index_min, 2)];       
     end
     
     classifier_stats(output, Operational_array_response, Operational_array_pos, 'Operational Dataset', 'Minimum Euclidean Distance');

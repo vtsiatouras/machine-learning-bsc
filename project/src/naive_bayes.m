@@ -90,7 +90,7 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         p4_sum = sum(log(p4));
         p5_sum = sum(log(p5));
         
-        % Apply Bayes log formula
+        % Apply Bayes with logarithm
         % argmax(k) (log(P(Ck) + Sum(log(p(Xi|Ck))
         bayes_rule_1 = [log(P1)+p1_sum 1];
         bayes_rule_2 = [log(P2)+p2_sum 2]; 
@@ -107,7 +107,6 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     
     classifier_stats(output, Test_array_response, Test_array_pos, 'Test Dataset', 'Naive Bayes');
    
-    
     fprintf('\n##########################\n');
     fprintf('      OPERATIONAL SET\n')
     fprintf('##########################\n');
