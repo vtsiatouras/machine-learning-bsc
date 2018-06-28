@@ -51,5 +51,4 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
     fprintf('##########################\n');
     k_nn_algorithm(Train_array, Train_array_response, Operational_array, Operational_array_pos, Operational_array_response, k, "Operational");
     
-    
 end
