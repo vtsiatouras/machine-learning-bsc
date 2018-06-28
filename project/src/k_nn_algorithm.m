@@ -1,6 +1,6 @@
-function accuracy=k_nn_algorithm(Train_array, Train_array_response, Validation_array, Validation_array_pos, Validation_array_response, k, Mode)
-    % Vector containing the class labels of
-    output = [];
+function [accuracy result]=k_nn_algorithm(Train_array, Train_array_response, Validation_array, Validation_array_response, k)
+    % Vector containing the class labels of dataset
+    result = [];
     
     % K-NN algorithm
     for i=1:size(Validation_array, 2)
@@ -23,9 +23,9 @@ function accuracy=k_nn_algorithm(Train_array, Train_array_response, Validation_a
         % Find the nearest neighbors
         neighbors = [neighbors_category_1; neighbors_category_2; neighbors_category_3; neighbors_category_4; neighbors_category_5];      
         [max_neighbors, index_max] = max(neighbors(:,1));
-        output = [output neighbors(index_max, 2)];              
+        result = [result neighbors(index_max, 2)];              
     end
     
-    accuracy = classifier_stats(output, Validation_array_response, Validation_array_pos, Mode, 'k-NN');
+    accuracy = classifier_stats(result, Validation_array_response);
     
 end
