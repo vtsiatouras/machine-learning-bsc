@@ -2,10 +2,10 @@
 
 function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
     
-    % Plot datasets
-    plot_dataset(Train_array_pos, Train_array_response, 'Train Dataset');
-    plot_dataset(Test_array_pos, Test_array_response, 'Test Dataset');
-    plot_dataset(Operational_array_pos, Operational_array_response, 'Operational Dataset');
+    % Plot datasets   
+    complete_dataset_array_response = [Train_array_response Test_array_response Operational_array_response];
+    complete_dataset_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(complete_dataset_array_pos, complete_dataset_array_response, 'Complete Dataset');
     drawnow('update');
     
     N = length(Train_array_pos);
@@ -69,9 +69,8 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
     fprintf('##########################\n');
     fprintf('        TEST SET\n')
     fprintf('##########################\n');
-    % Vector containing the class labels of
-    output = [];
-
+    % Vector containing the class labels of test set
+    test_set_estimations = [];
     N_Test = length(Test_array_pos);
     for i = 1:N_Test
         point = Test_array(:, i)';
@@ -101,17 +100,18 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         % Find the maximum probability
         bayes_rule = [bayes_rule_1; bayes_rule_2; bayes_rule_3; bayes_rule_4; bayes_rule_5];
         [max_probability, index_max] = max(bayes_rule(:,1));
-        output = [output bayes_rule(index_max, 2)];
+        test_set_estimations = [test_set_estimations bayes_rule(index_max, 2)];
 
     end
     
-    classifier_stats(output, Test_array_response, Test_array_pos, 'Test Dataset', 'Naive Bayes');
+    classifier_stats(test_set_estimations, Test_array_response);
    
     fprintf('\n##########################\n');
     fprintf('      OPERATIONAL SET\n')
     fprintf('##########################\n');
-    % Vector containing the class labels of
-    output = [];
+    
+    % Vector containing the class labels of operational set
+    operational_set_estimations = [];
     N_Operational = length(Operational_array_pos);
     for i = 1:N_Operational
         point = Operational_array(:, i)';
@@ -141,9 +141,13 @@ function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_ar
         % Find the maximum probability
         bayes_rule = [bayes_rule_1; bayes_rule_2; bayes_rule_3; bayes_rule_4; bayes_rule_5];
         [max_probability, index_max] = max(bayes_rule(:,1));
-        output = [output bayes_rule(index_max, 2)];
+        operational_set_estimations = [operational_set_estimations bayes_rule(index_max, 2)];
     end
+       
+    classifier_stats(operational_set_estimations, Operational_array_response);
     
-    classifier_stats(output, Operational_array_response, Operational_array_pos, 'Operational Dataset', 'Naive Bayes');
+    result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
+    result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(result_array_pos, result_array_response, 'Naive Bayes Result');
     
 end
