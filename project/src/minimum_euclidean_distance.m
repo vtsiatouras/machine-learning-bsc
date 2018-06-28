@@ -2,10 +2,10 @@
 
 function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
     
-    % Plot datasets
-    plot_dataset(Train_array_pos, Train_array_response, 'Train Dataset');
-    plot_dataset(Test_array_pos, Test_array_response, 'Test Dataset');
-    plot_dataset(Operational_array_pos, Operational_array_response, 'Operational Dataset');
+    % Plot datasets   
+    complete_dataset_array_response = [Train_array_response Test_array_response Operational_array_response];
+    complete_dataset_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(complete_dataset_array_pos, complete_dataset_array_response, 'Complete Dataset');
     drawnow('update');
     
     N = length(Train_array_pos);
@@ -48,8 +48,8 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
     fprintf('##########################\n');
     fprintf('        TEST SET\n')
     fprintf('##########################\n');
-    % Vector containing the class labels of
-    output = [];
+    % Vector containing the class labels of test set
+    test_set_estimations = [];
 
     N_Test = length(Test_array_pos);
     for i = 1:N_Test
@@ -63,16 +63,16 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
         % Find the minimum distance
         distances = [distance_1; distance_2; distance_3; distance_4; distance_5];
         [min_distance, index_min] = min(distances(:,1));
-        output = [output distances(index_min, 2)];       
+        test_set_estimations = [test_set_estimations distances(index_min, 2)];       
     end
     
-    classifier_stats(output, Test_array_response, Test_array_pos, 'Test Dataset', 'Minimum Euclidean Distance');
+    classifier_stats(test_set_estimations, Test_array_response);
     
     fprintf('\n##########################\n');
     fprintf('      OPERATIONAL SET\n')
     fprintf('##########################\n');
-    % Vector containing the class labels of
-    output = [];
+    % Vector containing the class labels of operational set
+    operational_set_estimations = [];
 
     N_Operational = length(Operational_array_pos);
     for i = 1:N_Operational
@@ -86,9 +86,13 @@ function minimum_euclidean_distance(Train_array, Train_array_pos, Train_array_re
         % Find the minimum distance
         distances = [distance_1; distance_2; distance_3; distance_4; distance_5];
         [min_distance, index_min] = min(distances(:,1));
-        output = [output distances(index_min, 2)];       
+        operational_set_estimations = [operational_set_estimations distances(index_min, 2)];       
     end
     
-    classifier_stats(output, Operational_array_response, Operational_array_pos, 'Operational Dataset', 'Minimum Euclidean Distance');
+    classifier_stats(operational_set_estimations, Operational_array_response);
+    
+    result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
+    result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(result_array_pos, result_array_response, 'Minimum Euclidean Distance Result');
     
 end

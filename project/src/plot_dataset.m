@@ -26,13 +26,14 @@ function plot_dataset(Dataset_array_pos, Dataset_array_response, Dataset_name)
     end
     
     % Plot dataset
-    figure('Name', Dataset_name,'NumberTitle','off'), axis equal
+    figure('Name', Dataset_name,'NumberTitle','off')
     hold on
     plot(Dataset_array_category_1_pos(:,1), Dataset_array_category_1_pos(:,2), 'b*');
     plot(Dataset_array_category_2_pos(:,1), Dataset_array_category_2_pos(:,2), 'r*');
     plot(Dataset_array_category_3_pos(:,1), Dataset_array_category_3_pos(:,2), 'g*');
     plot(Dataset_array_category_4_pos(:,1), Dataset_array_category_4_pos(:,2), 'y*');
     plot(Dataset_array_category_5_pos(:,1), Dataset_array_category_5_pos(:,2), 'm*');
+    camroll(270);
     hold off;
     drawnow('update');
         

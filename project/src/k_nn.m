@@ -2,10 +2,11 @@
 
 function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
 
-    % Plot datasets
-    plot_dataset(Train_array_pos, Train_array_response, 'Train Dataset');
-    plot_dataset(Test_array_pos, Test_array_response, 'Test Dataset');
-    plot_dataset(Operational_array_pos, Operational_array_response, 'Operational Dataset');
+    % Plot datasets   
+    complete_dataset_array_response = [Train_array_response Test_array_response Operational_array_response];
+    complete_dataset_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(complete_dataset_array_pos, complete_dataset_array_response, 'Complete Dataset');
+    drawnow('update');
     
     k = '';
    
@@ -44,11 +45,14 @@ function k_nn(Train_array, Train_array_pos, Train_array_response, Test_array, Te
     fprintf('##########################\n');
     fprintf('        TEST SET\n')
     fprintf('##########################\n');
-    k_nn_algorithm(Train_array, Train_array_response, Test_array, Test_array_pos, Test_array_response, k, "Test");
+    [accuracy, test_set_estimations] = k_nn_algorithm(Train_array, Train_array_response, Test_array, Test_array_response, k);
     
     fprintf('\n##########################\n');
     fprintf('      OPERATIONAL SET\n')
     fprintf('##########################\n');
-    k_nn_algorithm(Train_array, Train_array_response, Operational_array, Operational_array_pos, Operational_array_response, k, "Operational");
+    [accuracy, operational_set_estimations] = k_nn_algorithm(Train_array, Train_array_response, Operational_array, Operational_array_response, k);
     
+    result_array_response = [Train_array_response test_set_estimations operational_set_estimations];
+    result_array_pos = [Train_array_pos; Test_array_pos; Operational_array_pos];
+    plot_dataset(result_array_pos, result_array_response, 'k-NN Result');
 end
