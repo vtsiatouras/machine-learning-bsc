@@ -1,5 +1,4 @@
-% Naive Bayes Implementation
-
+% Naive Bayes Implementationa
 function naive_bayes(Train_array, Train_array_pos, Train_array_response, Test_array, Test_array_pos, Test_array_response, Operational_array, Operational_array_pos, Operational_array_response)
     
     tic;
