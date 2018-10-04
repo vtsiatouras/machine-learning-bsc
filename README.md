@@ -8,7 +8,7 @@ This repository contains the assignments for the cours "Machine Learning & Patte
 
 In the main project of the course I had to implement 3 supervised classification algorithms that classify elements(pixels) of a [hyperspectral image](https://en.wikipedia.org/wiki/Hyperspectral_imaging). The image that was given for the training and for the testing was the following:
 
-![Hyperspectral Image](https://github.com/VangelisTsiatouras/machine-learning-di/blob/master/project/outputs/Peek%202018-10-04%2004-10.gif)
+![Hyperspectral Image](https://github.com/VangelisTsiatouras/machine-learning-di/blob/master/project/outputs/Peek%202018-10-04%2004-19.gif)
 
 This image displays 5 different crops in the area of Salinas,California. From this image I extracted the attributes of each pixel and then I split this data into 3 datasets, the train dataset which is the smallest, the test dataset and the operational dataset which are used for the classification. Also each pixel has 204 spectrum channels (from 0,2μm to 2,4μm) and the image is composed from 22.500 pixels.
 
