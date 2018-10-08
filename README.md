@@ -1,5 +1,7 @@
 # Machine Learning & Pattern Recognition
 
+Copyright (C) 2018 Vangelis Tsiatouras
+
 ## About 
 
 This repository contains the assignments for the course "Machine Learning & Pattern Recognition" of the dept. Informatics & Telecommunications of University of Athens. The directories `ml_assignment_1` and `ml_assignment_2` contain 2 optional assignments which are introductory at MATLAB and in some classification algorithms.
